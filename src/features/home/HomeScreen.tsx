@@ -5,17 +5,17 @@ import { GoalCard } from '@/features/home/sections/GoalCard'
 import { HomeHeader } from '@/features/home/sections/HomeHeader'
 import { MonthlyPlanCard } from '@/features/home/sections/MonthlyPlanCard'
 import {
-  allocationByType,
-  portfolioDayChange,
-  portfolioDayChangePct,
+  getAllocationByType,
+  getPortfolioDayChange,
+  getPortfolioDayChangePct,
 } from '@/features/portfolio/helpers'
 import { usePortfolio } from '@/features/portfolio/usePortfolio'
-import { totalAssetValue } from '@/shared/utils/assets'
+import { countTotalValue } from '@/shared/utils/assets'
 
 export function HomeScreen() {
   const { data } = usePortfolio()
-  const total = totalAssetValue(data.assets)
-  const dayChange = portfolioDayChange(data.operations)
+  const total = countTotalValue(data.assets)
+  const dayChange = getPortfolioDayChange(data.operations)
 
   return (
     <div className="flex flex-col gap-5 px-5 pt-6 pb-6">
@@ -23,13 +23,13 @@ export function HomeScreen() {
       <CapitalCard
         total={total}
         dayChange={dayChange}
-        dayChangePct={portfolioDayChangePct(total, dayChange)}
+        dayChangePct={getPortfolioDayChangePct(total, dayChange)}
       />
       {data.goals.map((goal) => (
         <GoalCard key={goal.id} goal={goal} />
       ))}
       <MonthlyPlanCard plan={data.monthly} />
-      <AssetCard allocation={allocationByType(data.assets)} />
+      <AssetCard allocation={getAllocationByType(data.assets)} />
       <AccountsCard accounts={data.accounts} assets={data.assets} />
     </div>
   )

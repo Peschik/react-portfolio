@@ -1,6 +1,6 @@
 import { useParams } from 'react-router'
 import { AccountScreen } from '@/features/account/AccountScreen'
-import { assetsByAccount } from '@/features/account/helpers'
+import { getAssetsByAccount } from '@/features/account/helpers'
 import { usePortfolio } from '@/features/portfolio/usePortfolio'
 import { PagePlaceholder } from '@/shared/ui/PagePlaceholder'
 
@@ -21,7 +21,7 @@ export function AccountPage() {
   return (
     <AccountScreen
       account={account}
-      assets={assetsByAccount(data.assets, accountId)}
+      assets={getAssetsByAccount(data.assets, accountId)}
     />
   )
 }

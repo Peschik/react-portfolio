@@ -1,5 +1,5 @@
 import { formatRub } from '@/features/portfolio/format'
-import { monthlyProgress } from '@/features/portfolio/helpers'
+import { getMonthlyProgress } from '@/features/portfolio/helpers'
 import type { MonthlyPlan } from '@/features/portfolio/types'
 import { Card } from '@/shared/ui/Card'
 import { Metric } from '@/shared/ui/Metric'
@@ -9,7 +9,7 @@ type MonthlyPlanCardProps = {
 }
 
 export function MonthlyPlanCard({ plan }: MonthlyPlanCardProps) {
-  const { percent } = monthlyProgress(plan)
+  const { percent } = getMonthlyProgress(plan)
 
   return (
     <Card className="flex items-start justify-between gap-3">

@@ -1,6 +1,6 @@
 import { BellIcon } from '@/shared/ui/icons'
 import { formatUpdatedAt } from '@/features/portfolio/format'
-import { greetingPrefix } from '@/features/portfolio/helpers'
+import { getGreetingPrefix } from '@/features/portfolio/helpers'
 
 type HomeHeaderProps = {
   name: string
@@ -12,7 +12,7 @@ export function HomeHeader({ name, updatedAt }: HomeHeaderProps) {
     <header className="flex items-start justify-between gap-3">
       <div>
         <h1 className="text-2xl font-semibold tracking-tight text-text">
-          {greetingPrefix()}, {name}!
+          {getGreetingPrefix()}, {name}!
         </h1>
         <p className="mt-1 text-sm text-muted">{formatUpdatedAt(updatedAt)}</p>
       </div>

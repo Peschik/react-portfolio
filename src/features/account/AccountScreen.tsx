@@ -1,7 +1,7 @@
 import { AccountHeader } from '@/features/account/sections/AccountHeader'
 import { groupAssetsByType } from '@/features/assets/helpers'
 import { AssetGroup } from '@/features/assets/sections/AssetGroup'
-import { totalAssetValue } from '@/shared/utils/assets'
+import { countTotalValue } from '@/shared/utils/assets'
 import type { Account, Asset } from '@/features/portfolio/types'
 
 type AccountScreenProps = {
@@ -16,7 +16,7 @@ export function AccountScreen({ account, assets }: AccountScreenProps) {
     <div className="flex flex-col gap-5 px-5 pt-4 pb-6">
       <AccountHeader
         name={account.name}
-        total={totalAssetValue(assets)}
+        total={countTotalValue(assets)}
         dayChangePct={account.dayChangePct}
       />
       {groups.length === 0 ? (

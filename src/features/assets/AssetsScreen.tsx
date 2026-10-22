@@ -5,8 +5,8 @@ import {
   type AssetFilter,
 } from '@/features/assets/sections/AssetsFilters'
 import { AssetsHeader } from '@/features/assets/sections/AssetsHeader'
-import { assetsMonthChangePct, groupAssetsByType } from '@/features/assets/helpers'
-import { totalAssetValue } from '@/shared/utils/assets'
+import { getAssetsMonthChangePct, groupAssetsByType } from '@/features/assets/helpers'
+import { countTotalValue } from '@/shared/utils/assets'
 import { usePortfolio } from '@/features/portfolio/usePortfolio'
 
 export function AssetsScreen() {
@@ -22,8 +22,8 @@ export function AssetsScreen() {
   return (
     <div className="flex flex-col gap-5 px-5 pt-6 pb-6">
       <AssetsHeader
-        total={totalAssetValue(visible)}
-        monthChangePct={assetsMonthChangePct(visible)}
+        total={countTotalValue(visible)}
+        monthChangePct={getAssetsMonthChangePct(visible)}
       />
       <AssetsFilters value={filter} onChange={setFilter} />
       {groups.length === 0 ? (

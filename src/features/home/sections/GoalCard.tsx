@@ -1,7 +1,7 @@
 import { Link } from 'react-router'
-import { goalPath } from '@/app/paths'
+import { getGoalPath } from '@/app/paths'
 import { formatRub } from '@/features/portfolio/format'
-import { goalProgress } from '@/features/portfolio/helpers'
+import { getGoalProgress } from '@/features/portfolio/helpers'
 import type { Goal } from '@/features/portfolio/types'
 import { ProgressRing } from '@/shared/ui/ProgressRing'
 import { Card } from '@/shared/ui/Card'
@@ -11,10 +11,10 @@ type GoalCardProps = {
 }
 
 export function GoalCard({ goal }: GoalCardProps) {
-  const { left, ratio, percent } = goalProgress(goal)
+  const { left, ratio, percent } = getGoalProgress(goal)
 
   return (
-    <Link to={goalPath(goal.id)} className="block">
+    <Link to={getGoalPath(goal.id)} className="block">
       <Card>
         <p className="text-sm text-muted">Цель — {goal.title}</p>
         <div className="mt-3 flex items-center gap-4">

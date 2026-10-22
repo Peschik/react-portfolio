@@ -1,8 +1,8 @@
 import { Link } from 'react-router'
-import { accountPath, paths } from '@/app/paths'
-import { assetsByAccount } from '@/features/account/helpers'
+import { getAccountPath, paths } from '@/app/paths'
+import { getAssetsByAccount } from '@/features/account/helpers'
 import { formatRub, formatSignedPct } from '@/features/portfolio/format'
-import { totalAssetValue } from '@/shared/utils/assets'
+import { countTotalValue } from '@/shared/utils/assets'
 import type { Account, Asset } from '@/features/portfolio/types'
 import { Card } from '@/shared/ui/Card'
 import { ChevronRightIcon } from '@/shared/ui/icons'
@@ -39,11 +39,11 @@ function AccountRow({
   assets: Asset[]
 }) {
   const positive = account.dayChangePct >= 0
-  const balance = totalAssetValue(assetsByAccount(assets, account.id))
+  const balance = countTotalValue(getAssetsByAccount(assets, account.id))
 
   return (
     <Link
-      to={accountPath(account.id)}
+      to={getAccountPath(account.id)}
       className="flex items-center gap-3 px-4 py-3"
     >
       <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-line text-sm font-medium text-text">

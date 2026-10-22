@@ -7,10 +7,10 @@ export const paths = {
   account: '/accounts/:accountId',
 } as const
 
-export function goalPath(goalId: string) {
+export function getGoalPath(goalId: string) {
   return `/goals/${goalId}`
 }
 
-export function accountPath(accountId: string) {
+export function getAccountPath(accountId: string) {
   return `/accounts/${accountId}`
 }

@@ -18,7 +18,7 @@ export function groupOperationsByDay(operations: Operation[], now = new Date()) 
   const buckets = new Map<string, Operation[]>()
 
   for (const operation of sorted) {
-    const key = dayKey(new Date(operation.at))
+    const key = getDayKey(new Date(operation.at))
     const bucket = buckets.get(key)
     if (bucket) bucket.push(operation)
     else buckets.set(key, [operation])
@@ -26,16 +26,16 @@ export function groupOperationsByDay(operations: Operation[], now = new Date()) 
 
   return [...buckets.entries()].map(([key, items]) => ({
     key,
-    label: dayLabel(new Date(items[0].at), now),
+    label: getDayLabel(new Date(items[0].at), now),
     operations: items,
   }))
 }
 
-function dayKey(date: Date) {
+function getDayKey(date: Date) {
   return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
 }
 
-function dayLabel(date: Date, now: Date) {
+function getDayLabel(date: Date, now: Date) {
   if (isSameDay(date, now)) return 'Сегодня'
   const yesterday = new Date(now)
   yesterday.setDate(now.getDate() - 1)

@@ -1,5 +1,5 @@
 import { formatRub, formatSignedPct } from '@/features/portfolio/format'
-import { getAssetTypeLabel, totalAssetValue } from '@/shared/utils/assets'
+import { countTotalValue, getAssetTypeLabel } from '@/shared/utils/assets'
 import type { Asset, AssetType } from '@/features/portfolio/types'
 import { Card } from '@/shared/ui/Card'
 import { cn } from '@/shared/lib/cn'
@@ -10,7 +10,7 @@ type AssetGroupProps = {
 }
 
 export function AssetGroup({ type, assets }: AssetGroupProps) {
-  const total = totalAssetValue(assets)
+  const total = countTotalValue(assets)
 
   return (
     <section>

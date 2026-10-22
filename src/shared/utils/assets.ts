@@ -1,4 +1,4 @@
-import type { Asset, AssetType } from '@/features/portfolio/types'
+import { type AssetType } from '@/shared/types'
 
 const assetLabels: Record<AssetType, string> = {
   gold: 'Золото',
@@ -12,6 +12,6 @@ export function getAssetTypeLabel(type: AssetType) {
   return assetLabels[type]
 }
 
-export function totalAssetValue(assets: Asset[]) {
-  return assets.reduce((sum, asset) => sum + asset.value, 0)
+export function countTotalValue<T extends { value: number }>(items: T[]) {
+  return items.reduce((sum, item) => sum + item.value, 0)
 }

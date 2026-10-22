@@ -1,5 +1,5 @@
 import { formatMonthCount, formatRub } from '@/features/portfolio/format'
-import { goalProgress, monthlyProgress, monthsToGoal } from '@/features/portfolio/helpers'
+import { getGoalProgress, getMonthlyProgress, getMonthsToGoal } from '@/features/portfolio/helpers'
 import type { Goal } from '@/features/portfolio/types'
 import { Card } from '@/shared/ui/Card'
 import { Metric } from '@/shared/ui/Metric'
@@ -10,9 +10,9 @@ type GoalOverviewProps = {
 }
 
 export function GoalOverview({ goal }: GoalOverviewProps) {
-  const { left, ratio, percent } = goalProgress(goal)
-  const { percent: monthPercent } = monthlyProgress(goal.monthly)
-  const months = monthsToGoal(goal)
+  const { left, ratio, percent } = getGoalProgress(goal)
+  const { percent: monthPercent } = getMonthlyProgress(goal.monthly)
+  const months = getMonthsToGoal(goal)
 
   return (
     <div className="flex flex-col gap-5">

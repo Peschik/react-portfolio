@@ -1,33 +1,28 @@
-import { AssetType, type Asset, type AssetAllocation, type Goal, type MonthlyPlan, type Operation } from '@/features/portfolio/types'
+import { assetTypeList } from '@/shared/types'
+import type { Asset, AssetAllocation, Goal, MonthlyPlan, Operation } from '@/features/portfolio/types'
 import { isSameDay } from '@/shared/utils'
-import { totalAssetValue } from '@/shared/utils/assets'
+import { countTotalValue } from '@/shared/utils/assets'
 
-export const assetTypeList = [
-  AssetType.gold,
-  AssetType.stocks,
-  AssetType.fx,
-  AssetType.cash,
-  AssetType.commercialEstate,
-] as const
+export { assetTypeList }
 
-export function goalProgress(goal: Goal) {
+export function getGoalProgress(goal: Goal) {
   const left = Math.max(0, goal.target - goal.saved)
   const ratio = goal.target <= 0 ? 0 : Math.min(1, goal.saved / goal.target)
   return { left, ratio, percent: Math.round(ratio * 100) }
 }
 
-export function monthlyProgress(plan: MonthlyPlan) {
+export function getMonthlyProgress(plan: MonthlyPlan) {
   const ratio = plan.target <= 0 ? 0 : Math.min(1, plan.contributed / plan.target)
   return { ratio, percent: Math.round(ratio * 100) }
 }
 
-export function monthsToGoal(goal: Goal) {
-  const { left } = goalProgress(goal)
+export function getMonthsToGoal(goal: Goal) {
+  const { left } = getGoalProgress(goal)
   if (left <= 0 || goal.monthly.target <= 0) return 0
   return Math.ceil(left / goal.monthly.target)
 }
 
-export function greetingPrefix(now = new Date()) {
+export function getGreetingPrefix(now = new Date()) {
   const hour = now.getHours()
   if (hour < 6) return 'Доброй ночи'
   if (hour < 12) return 'Доброе утро'
@@ -35,10 +30,10 @@ export function greetingPrefix(now = new Date()) {
   return 'Добрый вечер'
 }
 
-export function allocationByType(assets: Asset[]): AssetAllocation[] {
-  const total = totalAssetValue(assets)
+export function getAllocationByType(assets: Asset[]): AssetAllocation[] {
+  const total = countTotalValue(assets)
   return assetTypeList.map((type) => {
-    const value = totalAssetValue(assets.filter((asset) => asset.type === type))
+    const value = countTotalValue(assets.filter((asset) => asset.type === type))
     return {
       type,
       value,
@@ -47,14 +42,13 @@ export function allocationByType(assets: Asset[]): AssetAllocation[] {
   })
 }
 
-export function portfolioDayChange(operations: Operation[], now = new Date()) {
+export function getPortfolioDayChange(operations: Operation[], now = new Date()) {
   return operations
     .filter((operation) => isSameDay(new Date(operation.at), now))
     .reduce((sum, operation) => sum + operation.amount, 0)
 }
 
-export function portfolioDayChangePct(total: number, dayChange: number) {
+export function getPortfolioDayChangePct(total: number, dayChange: number) {
   if (total <= 0) return 0
   return (dayChange / total) * 100
 }
-
