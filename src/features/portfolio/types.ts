@@ -1,13 +1,14 @@
+export type MonthlyPlan = {
+  target: number
+  contributed: number
+}
+
 export type Goal = {
   id: string
   title: string
   target: number
   saved: number
-}
-
-export type MonthlyPlan = {
-  target: number
-  contributed: number
+  monthly: MonthlyPlan
 }
 
 export const AssetType = {
@@ -39,7 +40,6 @@ export type Portfolio = {
   total: number
   dayChange: number
   dayChangePct: number
-  sparkline: number[]
   goals: Goal[]
   monthly: MonthlyPlan
   assets: Asset[]

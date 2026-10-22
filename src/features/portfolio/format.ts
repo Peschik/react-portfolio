@@ -27,6 +27,16 @@ export function formatShare(ratio: number) {
   return sharePct.format(ratio)
 }
 
+export function formatMonthCount(count: number) {
+  const mod10 = count % 10
+  const mod100 = count % 100
+  if (mod10 === 1 && mod100 !== 11) return `${count} месяц`
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) {
+    return `${count} месяца`
+  }
+  return `${count} месяцев`
+}
+
 export function formatUpdatedAt(iso: string, now = new Date()) {
   const date = new Date(iso)
   const time = new Intl.DateTimeFormat('ru-RU', {

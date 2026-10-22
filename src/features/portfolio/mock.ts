@@ -12,13 +12,16 @@ export const mockPortfolio: Portfolio = {
   total: 10_877_160,
   dayChange: 58_000,
   dayChangePct: 0.53,
-  sparkline: [92, 90, 94, 93, 97, 96, 101, 99, 104, 108, 107, 112],
   goals: [
     {
       id: 'apartment',
       title: 'Квартира',
       target: 16_000_000,
       saved: 11_548_460,
+      monthly: {
+        target: 350_000,
+        contributed: 50_050,
+      },
     },
   ],
   monthly: {

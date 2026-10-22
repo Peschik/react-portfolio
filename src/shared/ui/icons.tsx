@@ -107,6 +107,14 @@ export function BellIcon() {
   )
 }
 
+export function ChevronLeftIcon() {
+  return (
+    <Icon size={20}>
+      <path d="M15 6l-6 6 6 6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+    </Icon>
+  )
+}
+
 export function ChevronRightIcon() {
   return (
     <Icon size={16}>

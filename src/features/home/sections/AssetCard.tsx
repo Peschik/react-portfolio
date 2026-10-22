@@ -1,5 +1,5 @@
 import { formatShare } from '@/features/portfolio/format'
-import { formatAssetType } from '@/features/portfolio/helpers'
+import { getAssetTypeLabel } from '@/features/portfolio/helpers'
 import { type Asset, type AssetType } from '@/features/portfolio/types'
 import { Card } from '@/shared/ui/Card'
 
@@ -38,7 +38,7 @@ export function AssetCard({ assets }: AssetCardProps) {
             <li key={asset.id} className="flex items-center justify-between gap-3">
               <span className="flex items-center gap-2 text-muted">
                 <span className={`size-2 rounded-full ${assetView[asset.type].dot}`} />
-                {formatAssetType(asset.type)}
+                {getAssetTypeLabel(asset.type)}
               </span>
               <span className="text-text">{formatShare(asset.share)}</span>
             </li>

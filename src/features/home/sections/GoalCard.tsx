@@ -3,7 +3,7 @@ import { goalPath } from '@/app/paths'
 import { formatRub } from '@/features/portfolio/format'
 import { goalProgress } from '@/features/portfolio/helpers'
 import type { Goal } from '@/features/portfolio/types'
-import { ProgressRing } from '@/features/home/sections/ProgressRing'
+import { ProgressRing } from '@/shared/ui/ProgressRing'
 import { Card } from '@/shared/ui/Card'
 
 type GoalCardProps = {

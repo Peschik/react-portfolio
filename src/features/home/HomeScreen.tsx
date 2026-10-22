@@ -16,7 +16,6 @@ export function HomeScreen() {
         total={data.total}
         dayChange={data.dayChange}
         dayChangePct={data.dayChangePct}
-        sparkline={data.sparkline}
       />
       {data.goals.map((goal) => (
         <GoalCard key={goal.id} goal={goal} />

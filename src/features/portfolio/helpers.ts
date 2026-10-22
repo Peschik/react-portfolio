@@ -11,6 +11,12 @@ export function monthlyProgress(plan: MonthlyPlan) {
   return { ratio, percent: Math.round(ratio * 100) }
 }
 
+export function monthsToGoal(goal: Goal) {
+  const { left } = goalProgress(goal)
+  if (left <= 0 || goal.monthly.target <= 0) return 0
+  return Math.ceil(left / goal.monthly.target)
+}
+
 const assetLabels: Record<AssetType, string> = {
   gold: 'Золото',
   stocks: 'Акции',
@@ -19,7 +25,7 @@ const assetLabels: Record<AssetType, string> = {
   commercialEstate: 'Коммерческая недвижимость',
 }
 
-export function formatAssetType(type: AssetType) {
+export function getAssetTypeLabel(type: AssetType) {
   return assetLabels[type]
 }
 

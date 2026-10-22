@@ -1,4 +1,5 @@
 import { useParams } from 'react-router'
+import { GoalScreen } from '@/features/goal/GoalScreen'
 import { usePortfolio } from '@/features/portfolio/usePortfolio'
 import { PagePlaceholder } from '@/shared/ui/PagePlaceholder'
 
@@ -16,10 +17,5 @@ export function GoalPage() {
     )
   }
 
-  return (
-    <PagePlaceholder
-      title={goal.title}
-      description="Экран цели соберём следующим шагом."
-    />
-  )
+  return <GoalScreen goal={goal} />
 }
