@@ -10,6 +10,12 @@
   --color-plus: #3ddc97;
   --color-minus: #f07178;
   --color-line: #1c2130;
+  --color-warn: #e8c36a;
+  --color-alloc-gold: #e8c36a;
+  --color-alloc-stocks: #5b8def;
+  --color-alloc-fx: #7dd3c7;
+  --color-alloc-cash: #8b93a7;
+  --color-alloc-estate: #c084fc;
 
   --text-2xs: 0.6875rem;
   --text-2xs--line-height: 1;

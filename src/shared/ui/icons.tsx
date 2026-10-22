@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react'
 
-function Icon({ children }: { children: ReactNode }) {
+function Icon({ children, size = 22 }: { children: ReactNode; size?: number }) {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden>
       {children}
     </svg>
   )
@@ -89,6 +89,37 @@ export function PlusIcon() {
         strokeWidth="2.2"
         strokeLinecap="round"
       />
+    </Icon>
+  )
+}
+
+export function BellIcon() {
+  return (
+    <Icon>
+      <path
+        d="M6 10a6 6 0 1 1 12 0c0 4 1.5 5.5 1.5 5.5H4.5S6 14 6 10Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinejoin="round"
+      />
+      <path d="M10 18.5a2 2 0 0 0 4 0" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+    </Icon>
+  )
+}
+
+export function ChevronRightIcon() {
+  return (
+    <Icon size={16}>
+      <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+    </Icon>
+  )
+}
+
+export function TargetIcon() {
+  return (
+    <Icon size={18}>
+      <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.7" />
+      <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.7" />
     </Icon>
   )
 }

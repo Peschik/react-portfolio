@@ -1,3 +1,14 @@
+# Портфель
+Клиент семейного инвестиционного портфеля. Считает и показывает то, что уже живёт в Google Таблице: счета, активы, операции, цели.
+
+Рабочий инструмент, который пишу на стеке React + TypeScript. Основной коммерческий опыт — Vue 3 / Nuxt
+## Стек
+- React 19, TypeScript, Vite
+- React Router
+- Tailwind CSS v4
+- Дальше: Zod, TanStack Query, клиент к Apps Script
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
