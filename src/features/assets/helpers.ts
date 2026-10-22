@@ -1,4 +1,5 @@
-import { assetTypeList, totalAssetValue } from '@/features/portfolio/helpers'
+import { assetTypeList } from '@/features/portfolio/helpers'
+import { totalAssetValue } from '@/shared/utils/assets'
 import type { Asset } from '@/features/portfolio/types'
 
 export function assetsMonthChangePct(assets: Asset[]) {

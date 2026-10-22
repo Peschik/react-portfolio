@@ -1,5 +1,6 @@
 import { useRef } from 'react'
-import { assetTypeList, getAssetTypeLabel } from '@/features/portfolio/helpers'
+import { assetTypeList } from '@/features/portfolio/helpers'
+import { getAssetTypeLabel } from '@/shared/utils/assets'
 import type { AssetType } from '@/features/portfolio/types'
 import { cn } from '@/shared/lib/cn'
 

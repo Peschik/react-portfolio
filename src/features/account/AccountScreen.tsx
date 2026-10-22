@@ -1,7 +1,7 @@
 import { AccountHeader } from '@/features/account/sections/AccountHeader'
 import { groupAssetsByType } from '@/features/assets/helpers'
 import { AssetGroup } from '@/features/assets/sections/AssetGroup'
-import { totalAssetValue } from '@/features/portfolio/helpers'
+import { totalAssetValue } from '@/shared/utils/assets'
 import type { Account, Asset } from '@/features/portfolio/types'
 
 type AccountScreenProps = {

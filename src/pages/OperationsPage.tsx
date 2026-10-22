@@ -1,10 +1,5 @@
-import { PagePlaceholder } from '@/shared/ui/PagePlaceholder'
+import { OperationsScreen } from '@/features/operations/OperationsScreen'
 
 export function OperationsPage() {
-  return (
-    <PagePlaceholder
-      title="Операции"
-      description="Поступления и списания. Форма «Добавить» пока заглушка в нижней панели."
-    />
-  )
+  return <OperationsScreen />
 }

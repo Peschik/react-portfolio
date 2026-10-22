@@ -1,4 +1,6 @@
-import { AssetType, type Asset, type AssetAllocation, type Goal, type MonthlyPlan } from '@/features/portfolio/types'
+import { AssetType, type Asset, type AssetAllocation, type Goal, type MonthlyPlan, type Operation } from '@/features/portfolio/types'
+import { isSameDay } from '@/shared/utils'
+import { totalAssetValue } from '@/shared/utils/assets'
 
 export const assetTypeList = [
   AssetType.gold,
@@ -25,28 +27,12 @@ export function monthsToGoal(goal: Goal) {
   return Math.ceil(left / goal.monthly.target)
 }
 
-const assetLabels: Record<AssetType, string> = {
-  gold: 'Золото',
-  stocks: 'Акции',
-  fx: 'Валюта',
-  cash: 'Кэш',
-  commercialEstate: 'Коммерческая недвижимость',
-}
-
-export function getAssetTypeLabel(type: AssetType) {
-  return assetLabels[type]
-}
-
 export function greetingPrefix(now = new Date()) {
   const hour = now.getHours()
   if (hour < 6) return 'Доброй ночи'
   if (hour < 12) return 'Доброе утро'
   if (hour < 18) return 'Добрый день'
   return 'Добрый вечер'
-}
-
-export function totalAssetValue(assets: Asset[]) {
-  return assets.reduce((sum, asset) => sum + asset.value, 0)
 }
 
 export function allocationByType(assets: Asset[]): AssetAllocation[] {
@@ -59,5 +45,16 @@ export function allocationByType(assets: Asset[]): AssetAllocation[] {
       share: total <= 0 ? 0 : value / total,
     }
   })
+}
+
+export function portfolioDayChange(operations: Operation[], now = new Date()) {
+  return operations
+    .filter((operation) => isSameDay(new Date(operation.at), now))
+    .reduce((sum, operation) => sum + operation.amount, 0)
+}
+
+export function portfolioDayChangePct(total: number, dayChange: number) {
+  if (total <= 0) return 0
+  return (dayChange / total) * 100
 }
 

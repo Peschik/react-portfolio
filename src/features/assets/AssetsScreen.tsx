@@ -6,7 +6,7 @@ import {
 } from '@/features/assets/sections/AssetsFilters'
 import { AssetsHeader } from '@/features/assets/sections/AssetsHeader'
 import { assetsMonthChangePct, groupAssetsByType } from '@/features/assets/helpers'
-import { totalAssetValue } from '@/features/portfolio/helpers'
+import { totalAssetValue } from '@/shared/utils/assets'
 import { usePortfolio } from '@/features/portfolio/usePortfolio'
 
 export function AssetsScreen() {

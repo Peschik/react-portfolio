@@ -42,14 +42,60 @@ export type Account = {
   dayChangePct: number
 }
 
+export const OperationType = {
+  goalContribution: 'goalContribution',
+  dividend: 'dividend',
+  buy: 'buy',
+  sell: 'sell',
+  deposit: 'deposit',
+} as const
+
+export type OperationType = (typeof OperationType)[keyof typeof OperationType]
+
+type OperationBase = {
+  id: string
+  amount: number
+  at: string
+}
+
+export type GoalContributionOperation = OperationBase & {
+  type: typeof OperationType.goalContribution
+  data: { goalId: string }
+}
+
+export type DepositOperation = OperationBase & {
+  type: typeof OperationType.deposit
+  data: { accountId: string }
+}
+
+export type DividendOperation = OperationBase & {
+  type: typeof OperationType.dividend
+  data: { assetId: number }
+}
+
+export type BuyOperation = OperationBase & {
+  type: typeof OperationType.buy
+  data: { assetId: number }
+}
+
+export type SellOperation = OperationBase & {
+  type: typeof OperationType.sell
+  data: { assetId: number }
+}
+
+export type Operation =
+  | GoalContributionOperation
+  | DepositOperation
+  | DividendOperation
+  | BuyOperation
+  | SellOperation
+
 export type Portfolio = {
   greetingName: string
   updatedAt: string
-  total: number
-  dayChange: number
-  dayChangePct: number
   goals: Goal[]
   monthly: MonthlyPlan
   assets: Asset[]
   accounts: Account[]
+  operations: Operation[]
 }

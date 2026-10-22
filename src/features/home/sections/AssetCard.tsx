@@ -1,5 +1,5 @@
 import { formatShare } from '@/features/portfolio/format'
-import { getAssetTypeLabel } from '@/features/portfolio/helpers'
+import { getAssetTypeLabel } from '@/shared/utils/assets'
 import { type AssetAllocation, type AssetType } from '@/features/portfolio/types'
 import { Card } from '@/shared/ui/Card'
 

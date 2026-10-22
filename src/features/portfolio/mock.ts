@@ -1,17 +1,19 @@
-import { AssetType, type Portfolio } from '@/features/portfolio/types'
+import { AssetType, OperationType, type Portfolio } from '@/features/portfolio/types'
 
-function todayAt(hours: number, minutes: number) {
+function atDaysAgo(days: number, hours: number, minutes: number) {
   const date = new Date()
+  date.setDate(date.getDate() - days)
   date.setHours(hours, minutes, 0, 0)
   return date.toISOString()
+}
+
+function todayAt(hours: number, minutes: number) {
+  return atDaysAgo(0, hours, minutes)
 }
 
 export const mockPortfolio: Portfolio = {
   greetingName: 'Влад',
   updatedAt: todayAt(9, 41),
-  total: 10_877_160,
-  dayChange: 58_000,
-  dayChangePct: 0.53,
   goals: [
     {
       id: 'apartment',
@@ -46,5 +48,17 @@ export const mockPortfolio: Portfolio = {
     { id: 'sber', name: 'Сбербанк', dayChangePct: -0.18 },
     { id: 'tinkoff', name: 'Тинькофф', dayChangePct: -0.18 },
     { id: 'alfa', name: 'Альфа-Банк', dayChangePct: 1.1 },
+  ],
+  operations: [
+    { id: 'op-1', type: OperationType.goalContribution, data: { goalId: 'apartment' }, amount: 50_000, at: todayAt(16, 30) },
+    { id: 'op-2', type: OperationType.dividend, data: { assetId: 4 }, amount: 12_000, at: todayAt(8, 15) },
+    { id: 'op-3', type: OperationType.deposit, data: { accountId: 'tinkoff' }, amount: 25_000, at: todayAt(11, 0) },
+    { id: 'op-4', type: OperationType.buy, data: { assetId: 1 }, amount: -300_000, at: atDaysAgo(1, 18, 20) },
+    { id: 'op-5', type: OperationType.deposit, data: { accountId: 'vtb' }, amount: 200_000, at: atDaysAgo(1, 12, 40) },
+    { id: 'op-6', type: OperationType.dividend, data: { assetId: 6 }, amount: 5_000, at: atDaysAgo(1, 11, 10) },
+    { id: 'op-7', type: OperationType.buy, data: { assetId: 5 }, amount: -20_000, at: atDaysAgo(1, 10, 5) },
+    { id: 'op-8', type: OperationType.buy, data: { assetId: 8 }, amount: -80_000, at: atDaysAgo(1, 19, 0) },
+    { id: 'op-9', type: OperationType.dividend, data: { assetId: 7 }, amount: 3_400, at: atDaysAgo(1, 9, 0) },
+    { id: 'op-10', type: OperationType.sell, data: { assetId: 9 }, amount: 15_000, at: todayAt(14, 0) },
   ],
 }
