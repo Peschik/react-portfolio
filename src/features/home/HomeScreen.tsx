@@ -23,7 +23,7 @@ export function HomeScreen() {
       ))}
       <MonthlyPlanCard plan={data.monthly} />
       <AssetCard allocation={allocationByType(data.assets)} />
-      <AccountsCard accounts={data.accounts} />
+      <AccountsCard accounts={data.accounts} assets={data.assets} />
     </div>
   )
 }

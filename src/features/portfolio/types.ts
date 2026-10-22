@@ -24,6 +24,7 @@ export type AssetType = (typeof AssetType)[keyof typeof AssetType]
 export type Asset = {
   id: number
   type: AssetType
+  accountId: string
   name: string
   value: number
   monthChangePct: number
@@ -38,7 +39,6 @@ export type AssetAllocation = {
 export type Account = {
   id: string
   name: string
-  balance: number
   dayChangePct: number
 }
 

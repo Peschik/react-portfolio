@@ -1,16 +1,19 @@
 import { Link } from 'react-router'
 import { accountPath, paths } from '@/app/paths'
+import { assetsByAccount } from '@/features/account/helpers'
 import { formatRub, formatSignedPct } from '@/features/portfolio/format'
-import type { Account } from '@/features/portfolio/types'
+import { totalAssetValue } from '@/features/portfolio/helpers'
+import type { Account, Asset } from '@/features/portfolio/types'
 import { Card } from '@/shared/ui/Card'
 import { ChevronRightIcon } from '@/shared/ui/icons'
 import { cn } from '@/shared/lib/cn'
 
 type AccountsCardProps = {
   accounts: Account[]
+  assets: Asset[]
 }
 
-export function AccountsCard({ accounts }: AccountsCardProps) {
+export function AccountsCard({ accounts, assets }: AccountsCardProps) {
   return (
     <section>
       <div className="flex items-center justify-between">
@@ -21,15 +24,22 @@ export function AccountsCard({ accounts }: AccountsCardProps) {
       </div>
       <Card className="mt-3 divide-y divide-line p-0">
         {accounts.map((account) => (
-          <AccountRow key={account.id} account={account} />
+          <AccountRow key={account.id} account={account} assets={assets} />
         ))}
       </Card>
     </section>
   )
 }
 
-function AccountRow({ account }: { account: Account }) {
+function AccountRow({
+  account,
+  assets,
+}: {
+  account: Account
+  assets: Asset[]
+}) {
   const positive = account.dayChangePct >= 0
+  const balance = totalAssetValue(assetsByAccount(assets, account.id))
 
   return (
     <Link
@@ -42,7 +52,7 @@ function AccountRow({ account }: { account: Account }) {
       <span className="min-w-0 flex-1">
         <span className="block truncate text-sm text-text">{account.name}</span>
         <span className="block text-sm font-medium text-text">
-          {formatRub(account.balance)}
+          {formatRub(balance)}
         </span>
       </span>
       <span

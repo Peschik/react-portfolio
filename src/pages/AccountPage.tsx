@@ -1,4 +1,6 @@
 import { useParams } from 'react-router'
+import { AccountScreen } from '@/features/account/AccountScreen'
+import { assetsByAccount } from '@/features/account/helpers'
 import { usePortfolio } from '@/features/portfolio/usePortfolio'
 import { PagePlaceholder } from '@/shared/ui/PagePlaceholder'
 
@@ -7,7 +9,7 @@ export function AccountPage() {
   const { data } = usePortfolio()
   const account = data.accounts.find((item) => item.id === accountId)
 
-  if (!account) {
+  if (!account || !accountId) {
     return (
       <PagePlaceholder
         title="Счёт не найден"
@@ -17,9 +19,9 @@ export function AccountPage() {
   }
 
   return (
-    <PagePlaceholder
-      title={account.name}
-      description="Экран счёта соберём следующим шагом."
+    <AccountScreen
+      account={account}
+      assets={assetsByAccount(data.assets, accountId)}
     />
   )
 }
