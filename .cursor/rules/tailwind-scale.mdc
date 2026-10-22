@@ -1,0 +1,21 @@
+---
+description: Use named Tailwind scale tokens instead of arbitrary size classes
+globs: "**/*.{tsx,css}"
+alwaysApply: false
+---
+
+# Tailwind scale
+
+Do not write size utilities with arbitrary values in brackets.
+
+If the design is close to the default scale, use the nearest step. If it is a deliberate size, add a named token in `@theme` (`src/index.css`) and use the alias.
+
+Variants with brackets (`aria-[current=page]:`, `group-aria-[current=page]:`) are allowed.
+
+```tsx
+// BAD
+<h1 className="text-[11px] max-w-[430px]">Title</h1>
+
+// GOOD
+<h1 className="text-2xs max-w-phone">Title</h1>
+```
