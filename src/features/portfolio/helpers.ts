@@ -1,4 +1,12 @@
-import type { AssetType, Goal, MonthlyPlan } from '@/features/portfolio/types'
+import { AssetType, type Asset, type AssetAllocation, type Goal, type MonthlyPlan } from '@/features/portfolio/types'
+
+export const assetTypeList = [
+  AssetType.gold,
+  AssetType.stocks,
+  AssetType.fx,
+  AssetType.cash,
+  AssetType.commercialEstate,
+] as const
 
 export function goalProgress(goal: Goal) {
   const left = Math.max(0, goal.target - goal.saved)
@@ -36,3 +44,20 @@ export function greetingPrefix(now = new Date()) {
   if (hour < 18) return 'Добрый день'
   return 'Добрый вечер'
 }
+
+export function totalAssetValue(assets: Asset[]) {
+  return assets.reduce((sum, asset) => sum + asset.value, 0)
+}
+
+export function allocationByType(assets: Asset[]): AssetAllocation[] {
+  const total = totalAssetValue(assets)
+  return assetTypeList.map((type) => {
+    const value = totalAssetValue(assets.filter((asset) => asset.type === type))
+    return {
+      type,
+      value,
+      share: total <= 0 ? 0 : value / total,
+    }
+  })
+}
+

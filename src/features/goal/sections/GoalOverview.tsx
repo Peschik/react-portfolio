@@ -16,9 +16,8 @@ export function GoalOverview({ goal }: GoalOverviewProps) {
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex flex-col items-center gap-4 pt-2">
+      <div className="flex flex-col items-center pt-2">
         <ProgressRing ratio={ratio} label={`${percent}%`} />
-        <p className="text-sm text-muted">к цели</p>
       </div>
 
       <dl className="grid grid-cols-3 gap-2 text-center text-sm">

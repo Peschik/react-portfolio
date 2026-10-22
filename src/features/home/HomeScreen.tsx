@@ -4,6 +4,7 @@ import { CapitalCard } from '@/features/home/sections/CapitalCard'
 import { GoalCard } from '@/features/home/sections/GoalCard'
 import { HomeHeader } from '@/features/home/sections/HomeHeader'
 import { MonthlyPlanCard } from '@/features/home/sections/MonthlyPlanCard'
+import { allocationByType } from '@/features/portfolio/helpers'
 import { usePortfolio } from '@/features/portfolio/usePortfolio'
 
 export function HomeScreen() {
@@ -21,7 +22,7 @@ export function HomeScreen() {
         <GoalCard key={goal.id} goal={goal} />
       ))}
       <MonthlyPlanCard plan={data.monthly} />
-      <AssetCard assets={data.assets} />
+      <AssetCard allocation={allocationByType(data.assets)} />
       <AccountsCard accounts={data.accounts} />
     </div>
   )

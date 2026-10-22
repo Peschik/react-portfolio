@@ -26,6 +26,15 @@
   --spacing-nav-safe: max(10px, env(safe-area-inset-bottom));
 }
 
+@utility scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 html,
 body,
 #root {

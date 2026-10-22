@@ -1,10 +1,5 @@
-import { PagePlaceholder } from '@/shared/ui/PagePlaceholder'
+import { AssetsScreen } from '@/features/assets/AssetsScreen'
 
 export function AssetsPage() {
-  return (
-    <PagePlaceholder
-      title="Активы"
-      description="Металлы, акции, валюта и фонды — список появится после клиента к таблице."
-    />
-  )
+  return <AssetsScreen />
 }

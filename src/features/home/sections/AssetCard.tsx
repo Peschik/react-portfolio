@@ -1,6 +1,6 @@
 import { formatShare } from '@/features/portfolio/format'
 import { getAssetTypeLabel } from '@/features/portfolio/helpers'
-import { type Asset, type AssetType } from '@/features/portfolio/types'
+import { type AssetAllocation, type AssetType } from '@/features/portfolio/types'
 import { Card } from '@/shared/ui/Card'
 
 const assetView: Record<AssetType, { color: string; dot: string }> = {
@@ -12,14 +12,14 @@ const assetView: Record<AssetType, { color: string; dot: string }> = {
 }
 
 type AssetCardProps = {
-  assets: Asset[]
+  allocation: AssetAllocation[]
 }
 
-export function AssetCard({ assets }: AssetCardProps) {
-  const stops = assets.map((asset, index) => {
-    const start = assets.slice(0, index).reduce((sum, item) => sum + item.share, 0)
-    const end = start + asset.share
-    return `${assetView[asset.type].color} ${start * 100}% ${end * 100}%`
+export function AssetCard({ allocation }: AssetCardProps) {
+  const stops = allocation.map((slice, index) => {
+    const start = allocation.slice(0, index).reduce((sum, item) => sum + item.share, 0)
+    const end = start + slice.share
+    return `${assetView[slice.type].color} ${start * 100}% ${end * 100}%`
   })
 
   return (
@@ -34,13 +34,13 @@ export function AssetCard({ assets }: AssetCardProps) {
           <div className="absolute inset-3 rounded-full bg-card" />
         </div>
         <ul className="flex flex-1 flex-col gap-2 text-sm">
-          {assets.map((asset) => (
-            <li key={asset.id} className="flex items-center justify-between gap-3">
+          {allocation.map((slice) => (
+            <li key={slice.type} className="flex items-center justify-between gap-3">
               <span className="flex items-center gap-2 text-muted">
-                <span className={`size-2 rounded-full ${assetView[asset.type].dot}`} />
-                {getAssetTypeLabel(asset.type)}
+                <span className={`size-2 rounded-full ${assetView[slice.type].dot}`} />
+                {getAssetTypeLabel(slice.type)}
               </span>
-              <span className="text-text">{formatShare(asset.share)}</span>
+              <span className="text-text">{formatShare(slice.share)}</span>
             </li>
           ))}
         </ul>
